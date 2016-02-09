@@ -1,0 +1,91 @@
+plugins {
+    id 'net.franz-becker.gradle-lombok' version '1.5'
+}
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'findbugs'
+
+//needed in order to get Lombok working
+apply plugin: 'war'
+
+//UPDATE!!!!!!!!!!!!!!
+mainClassName = "pl.agh.edu.server.ServerInvoker"
+version = "1.0"
+
+
+repositories {
+    mavenCentral()
+}
+
+// generating single Jar
+task fatJar(type: Jar) {
+    delete "build/libs"
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+
+}
+
+// generating JavaDoc
+import net.franz_becker.gradle.lombok.task.DelombokTask
+
+task delombok(type: DelombokTask) {
+    args("src/main/java", "-d", "src/delombok/java")
+}
+
+task deleteDelombok(type: Delete) {
+    delete "src/delombok"
+}
+
+
+task myJavadocs(type: Javadoc) {
+    source = "src/delombok/java"
+}
+
+myJavadocs.dependsOn delombok
+clean.dependsOn deleteDelombok
+
+findbugsMain {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+findbugsTest {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+
+dependencies {
+    providedCompile "org.projectlombok:lombok:1.16.6"
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.slf4j:slf4j-api:1.7.2'
+    compile 'ch.qos.logback:logback-classic:1.0.9'
+    compile 'ch.qos.logback:logback-core:1.0.9'
+
+    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'org.javassist:javassist:3.20.0-GA'
+    compile 'javax.transaction:jta:1.1'
+
+    compile 'org.avaje:avaje-agentloader:2.1.2'
+    compile 'org.avaje.ebeanorm:avaje-ebeanorm-agent:4.8.1'
+    compile 'org.avaje.ebeanorm:avaje-ebeanorm:6.15.1'
+
+    testCompile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'cglib:cglib-nodep:3.2.0'
+    testCompile 'org.objenesis:objenesis:2.2'
+}
+
+
+
+
+
+
