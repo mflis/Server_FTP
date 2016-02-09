@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40"
+            fx:controller="pl.agh.edu.AdminPanel.controller.MainController">
+    <children>
+        <VBox layoutX="31.0" layoutY="27.0" prefHeight="272.0" prefWidth="237.0">
+            <children>
+                <Label text="Action"/>
+                <ChoiceBox fx:id="actionChoiceBox" prefWidth="150.0"/>
+                <Label fx:id="firstLabel" text="Name"/>
+                <TextField fx:id="firstTextField"/>
+                <VBox fx:id="secondField" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label fx:id="secondLabel" text="Password"/>
+                        <TextField fx:id="secondTextField"/>
+                    </children>
+                </VBox>
+                <Button fx:id="actionButton" alignment="CENTER" mnemonicParsing="false" text="Perform"
+                        textAlignment="CENTER"/>
+                <Label fx:id="statusLabel"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
