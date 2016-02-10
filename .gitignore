@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!**/*.java
+!**/*.sql
+!**/build.gradle
+!**/resources/**
+!**/*.md
+
+
+# ...even if they are in subdirectories
+!*/
+
