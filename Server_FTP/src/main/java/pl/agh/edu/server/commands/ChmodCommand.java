@@ -1,6 +1,6 @@
 package pl.agh.edu.server.commands;
 
-import pl.agh.edu.database.model.User;
+import pl.agh.edu.database.user.User;
 import pl.agh.edu.database.utils.DatabaseOperations;
 import pl.agh.edu.server.session.SessionManager;
 

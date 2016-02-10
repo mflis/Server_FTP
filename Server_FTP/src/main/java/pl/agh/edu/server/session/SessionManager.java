@@ -3,7 +3,7 @@ package pl.agh.edu.server.session;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import pl.agh.edu.database.model.User;
+import pl.agh.edu.database.user.User;
 import pl.agh.edu.server.PassiveConnection;
 import pl.agh.edu.server.SingleServerThread;
 import pl.agh.edu.server.commands.Command;

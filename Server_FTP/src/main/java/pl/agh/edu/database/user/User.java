@@ -1,7 +1,8 @@
-package pl.agh.edu.database.model;
+package pl.agh.edu.database.user;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import pl.agh.edu.database.group.Group;
 
 import javax.persistence.*;
 import java.util.HashSet;

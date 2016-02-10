@@ -3,9 +3,9 @@ package pl.agh.edu.database.utils;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.EbeanServer;
 import lombok.extern.slf4j.Slf4j;
-import pl.agh.edu.database.model.File;
-import pl.agh.edu.database.model.Group;
-import pl.agh.edu.database.model.User;
+import pl.agh.edu.database.file.File;
+import pl.agh.edu.database.group.Group;
+import pl.agh.edu.database.user.User;
 import pl.agh.edu.server.commands.ChmodCommand;
 
 import java.security.NoSuchAlgorithmException;
