@@ -1,7 +1,7 @@
 package pl.agh.edu.server.commands;
 
+import pl.agh.edu.database.file.FileDaoImpl;
 import pl.agh.edu.database.user.User;
-import pl.agh.edu.database.utils.DatabaseOperations;
 import pl.agh.edu.server.session.SessionManager;
 
 import java.io.File;
@@ -27,7 +27,7 @@ public class ChmodCommand extends Command {
         if (!checkPermissions()) {
             return "450 permission denied";
         }
-        DatabaseOperations.getInstance().changePermissions(
+        FileDaoImpl.INSTANCE.changePermissions(
                 fileToChangePermissions.getPath(), decodePermissions(newPermissions));
 
         return "permissions changed";
@@ -36,7 +36,7 @@ public class ChmodCommand extends Command {
     private boolean checkPermissions() {
         User user = getSessionManager().getLoggedUser().get();
         String path = fileToChangePermissions.getPath();
-        return DatabaseOperations.getInstance().canUserWriteToFile(path, user);
+        return FileDaoImpl.INSTANCE.canUserWriteToFile(path, user);
     }
 
     private Permissions decodePermissions(String newPermissions) {

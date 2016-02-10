@@ -1,8 +1,8 @@
 package pl.agh.edu.server.commands;
 
 import lombok.extern.slf4j.Slf4j;
+import pl.agh.edu.database.file.FileDaoImpl;
 import pl.agh.edu.database.user.User;
-import pl.agh.edu.database.utils.DatabaseOperations;
 import pl.agh.edu.server.session.SessionManager;
 
 import java.io.File;
@@ -26,7 +26,7 @@ public class DeleCommand extends Command {
         }
 
 
-        if (!fileToDelete.delete() || !DatabaseOperations.getInstance().deleteFileIfExists(fileToDelete.getPath())) {
+        if (!fileToDelete.delete() || !FileDaoImpl.INSTANCE.deleteFileIfExists(fileToDelete.getPath())) {
             log.trace("450 unsuccessful delete");
             return "450 unsuccessful delete";
         }
@@ -36,6 +36,6 @@ public class DeleCommand extends Command {
     private boolean checkPermissions() {
         User user = getSessionManager().getLoggedUser().get();
         String path = fileToDelete.getPath();
-        return DatabaseOperations.getInstance().canUserWriteToFile(path, user);
+        return FileDaoImpl.INSTANCE.canUserWriteToFile(path, user);
     }
 }

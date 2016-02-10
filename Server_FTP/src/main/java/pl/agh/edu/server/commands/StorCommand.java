@@ -1,8 +1,8 @@
 package pl.agh.edu.server.commands;
 
 import lombok.extern.slf4j.Slf4j;
+import pl.agh.edu.database.file.FileDaoImpl;
 import pl.agh.edu.database.user.User;
-import pl.agh.edu.database.utils.DatabaseOperations;
 import pl.agh.edu.server.passiveTasks.PassiveTask;
 import pl.agh.edu.server.passiveTasks.TypeOfTask;
 import pl.agh.edu.server.session.SessionManager;
@@ -50,6 +50,6 @@ public class StorCommand extends Command {
     private boolean saveToDatabase() {
         User user = getSessionManager().getLoggedUser().get();
         String path = fileToRead.getPath();
-        return DatabaseOperations.getInstance().insertNewFileIfNotExists(path, user);
+        return FileDaoImpl.INSTANCE.insertNewFileIfNotExists(path, user);
     }
 }

@@ -1,8 +1,8 @@
 package pl.agh.edu.server.commands;
 
 import lombok.extern.slf4j.Slf4j;
+import pl.agh.edu.database.file.FileDaoImpl;
 import pl.agh.edu.database.user.User;
-import pl.agh.edu.database.utils.DatabaseOperations;
 import pl.agh.edu.server.passiveTasks.PassiveTask;
 import pl.agh.edu.server.passiveTasks.TypeOfTask;
 import pl.agh.edu.server.session.SessionManager;
@@ -49,6 +49,6 @@ public class RetrCommand extends Command {
     private boolean checkPermissions() {
         User user = getSessionManager().getLoggedUser().get();
         String path = fileToSend.getPath();
-        return DatabaseOperations.getInstance().canUserReadFromFile(path, user);
+        return FileDaoImpl.INSTANCE.canUserReadFromFile(path, user);
     }
 }

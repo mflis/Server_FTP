@@ -1,4 +1,4 @@
-package pl.agh.edu.database.utils;
+package pl.agh.edu.database.user;
 
 /*
  * Password Hashing With PBKDF2 (http://crackstation.net/hashing-security.htm).

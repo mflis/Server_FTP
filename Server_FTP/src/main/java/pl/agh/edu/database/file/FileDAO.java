@@ -39,5 +39,20 @@ public interface FileDAO {
      */
     Optional<File> getFileIfExists(String pathToFile);
 
+    /**
+     * checks whether user has read permissions to file
+     *
+     * @param filename absolute path of file being checked
+     * @param user     user being checked(currently logged user)
+     */
+    boolean canUserReadFromFile(String filename, User user);
+
+    /**
+     * checks whether user has write permissions to file
+     *
+     * @param filename absolute path of file being checked
+     * @param user     user being checked(currently logged user)
+     */
+    boolean canUserWriteToFile(String filename, User user);
 
 }

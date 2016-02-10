@@ -1,7 +1,7 @@
 package pl.agh.edu.server.commands;
 
 import pl.agh.edu.database.user.User;
-import pl.agh.edu.database.utils.DatabaseOperations;
+import pl.agh.edu.database.user.UserDaoImpl;
 import pl.agh.edu.server.session.SessionManager;
 
 import java.util.Optional;
@@ -24,13 +24,13 @@ public class PassCommand extends Command {
 
     @Override
     public String execute() {
-        Optional<User> userOptional = DatabaseOperations.getInstance()
+        Optional<User> userOptional = UserDaoImpl.INSTANCE
                 .getUserIfExists(userName);
         if (!userOptional.isPresent()) {
             return "430 Invalid username or password";
         }
 
-        if (DatabaseOperations.getInstance().validatePassword(userOptional.get(), password)) {
+        if (UserDaoImpl.INSTANCE.validatePassword(userOptional.get(), password)) {
             getSessionManager().setLoggedUser(userOptional);
             return "230 User logged in";
         } else {
