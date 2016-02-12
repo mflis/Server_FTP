@@ -10,7 +10,7 @@ import org.avaje.agentloader.AgentLoader;
 public class ServerInvoker {
     public static void main(String[] args) {
         // Load the agent into the running JVM process
-        if (!AgentLoader.loadAgentFromClasspath("avaje-ebeanorm-agent", "debug=1;packages=pl.agh.edu.database.model.**")) {
+        if (!AgentLoader.loadAgentFromClasspath("avaje-ebeanorm-agent", "debug=1;packages=pl.agh.edu.database.**")) {
             log.info("avaje-ebeanorm-agent not found in classpath - not dynamically loaded");
         }
         init();

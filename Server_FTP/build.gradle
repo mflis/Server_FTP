@@ -5,7 +5,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'application'
 apply plugin: 'idea'
-apply plugin: 'findbugs'
+
 
 //needed in order to get Lombok working
 apply plugin: 'war'
@@ -14,7 +14,7 @@ apply plugin: 'war'
 mainClassName = "pl.agh.edu.server.ServerInvoker"
 version = "1.0"
 
-
+sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
@@ -49,18 +49,7 @@ task myJavadocs(type: Javadoc) {
 myJavadocs.dependsOn delombok
 clean.dependsOn deleteDelombok
 
-findbugsMain {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-}
-findbugsTest {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-}
+
 
 
 dependencies {
